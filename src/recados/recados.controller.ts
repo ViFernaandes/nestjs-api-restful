@@ -11,23 +11,25 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { CreateRecadoDto } from './dto/create-recado.dto';
+import { UpdateRecadoDto } from './dto/uptadte-recado.dto';
 import { RecadosService } from './recados.service';
-import { CreateRecadoDto } from './dto/create-recado-dto';
-import { UpdateRecadoDto } from './dto/uptadte-recado-dto';
 
 @Controller('recados')
 export class RecadosController {
-  constructor(private readonly recadosServices: RecadosService) {}
+  constructor(private readonly recadosServices: RecadosService) { }
   @HttpCode(HttpStatus.OK)
   @Get()
-  findAll(@Query() pagination: any) {
+  async findAll(@Query() pagination: any) {
     console.log(pagination);
-    return this.recadosServices.findAll();
+    const recados = await this.recadosServices.findAll();
+    return recados;
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.recadosServices.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    const recado = await this.recadosServices.findOne(id);
+    return recado;
   }
 
   @Post()

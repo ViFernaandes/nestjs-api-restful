@@ -1,0 +1,14 @@
+services:
+  conceitos_nest_database:
+    image: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: app_user
+      POSTGRES_DB: app_db
+      POSTGRES_PASSWORD: app_senha
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:

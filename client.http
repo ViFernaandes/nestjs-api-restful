@@ -1,0 +1,91 @@
+@baseUrl = http://localhost:3000
+
+# RECADOS
+
+
+### Lista todos os recados
+
+GET {{baseUrl}}/recados/ HTTP/1.1
+
+
+### 
+
+GET ?limit=10 HTTP/1.1
+
+
+### 
+
+GET &offset=10 HTTP/1.1
+
+
+### 
+
+GET &user=luiz HTTP/1.1
+
+
+### Lista apenas um recado
+
+GET {{baseUrl}}/recados/12 HTTP/1.1
+
+
+### Cria um recado
+
+POST {{baseUrl}}/recados HTTP/1.1
+Content-Type: application/json
+
+{
+  "deId": 10,
+  "paraId": 10,
+  "texto": "4 NOVO Recado1"
+}
+
+
+### Atualiza um recado
+
+PATCH {{baseUrl}}/recados/3 HTTP/1.1
+Content-Type: application/json
+
+{
+  "lido": true,
+  "texto": "Recado Atualizado Sucesso"
+}
+
+
+### Apaga um recado
+
+DELETE {{baseUrl}}/recados/2 HTTP/1.1
+
+# PESSOAS
+### Lista todos os pessoas
+GET {{baseUrl}}/pessoas/
+?limit=10
+&offset=10
+&user=luiz
+
+### Lista apenas um recado
+GET {{baseUrl}}/pessoas/1/
+
+### Cria um recado
+POST {{baseUrl}}/pessoas
+Content-Type: application/json
+{
+ "nome": "Otávio",
+ "password": "123456",
+ "email": "email@email.com"
+}
+
+
+### Apaga um pessoa
+
+DELETE {{baseUrl}}/pessoas/12 HTTP/1.1
+
+
+### Atualiza um recado
+
+PATCH {{baseUrl}}/pessoas/12 HTTP/1.1
+Content-Type: application/json
+
+{
+  "nome": "Joãooo",
+  "password": "12345678"
+}
