@@ -13,7 +13,7 @@ export class RecadosService {
     @InjectRepository(Recado)
     private readonly recadoRepository: Repository<Recado>,
     private readonly pessoaService: PessoasService,
-  ) {}
+  ) { }
 
   throwNotFoundError(): never {
     throw new NotFoundException('Recado não encontrado');
