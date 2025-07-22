@@ -5,22 +5,7 @@
 
 ### Lista todos os recados
 
-GET {{baseUrl}}/recados/ HTTP/1.1
-
-
-### 
-
-GET ?limit=10 HTTP/1.1
-
-
-### 
-
-GET &offset=10 HTTP/1.1
-
-
-### 
-
-GET &user=luiz HTTP/1.1
+GET {{baseUrl}}/recados/?limit=10&offset=10 HTTP/1.1
 
 
 ### Lista apenas um recado

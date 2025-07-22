@@ -16,7 +16,7 @@ export class PessoasService {
   constructor(
     @InjectRepository(Pessoa)
     private readonly pessoaRepository: Repository<Pessoa>,
-  ) { }
+  ) {}
 
   throwNewError() {
     throw new HttpException(

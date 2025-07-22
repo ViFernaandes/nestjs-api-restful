@@ -1,5 +1,6 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { PessoasService } from 'src/pessoas/pessoas.service';
 import { Repository } from 'typeorm';
 import { CreateRecadoDto } from './dto/create-recado.dto';
@@ -12,14 +13,18 @@ export class RecadosService {
     @InjectRepository(Recado)
     private readonly recadoRepository: Repository<Recado>,
     private readonly pessoaService: PessoasService,
-  ) { }
+  ) {}
 
-  throwNotFoundError() {
-    throw new HttpException('Recado não encontrado', HttpStatus.NOT_FOUND);
+  throwNotFoundError(): never {
+    throw new NotFoundException('Recado não encontrado');
   }
 
-  async findAll() {
+  async findAll(paginationDto?: PaginationDto) {
+    const { limit = 10, offset = 0 } = paginationDto;
+
     const recados = await this.recadoRepository.find({
+      take: limit,
+      skip: offset,
       relations: ['de', 'para'],
       select: {
         de: {
@@ -35,7 +40,7 @@ export class RecadosService {
     return recados;
   }
 
-  async findOne(id: number) {
+  async findOne(id: number): Promise<Recado> {
     const recado = await this.recadoRepository.findOne({
       where: {
         id,
@@ -72,7 +77,7 @@ export class RecadosService {
       data: new Date(),
     };
 
-    const recado = await this.recadoRepository.create(novoRecado);
+    const recado = this.recadoRepository.create(novoRecado);
     await this.recadoRepository.save(recado);
 
     return {
@@ -83,19 +88,14 @@ export class RecadosService {
   }
 
   async uptade(id: number, updateRecadoDto: UpdateRecadoDto) {
-    const partialUpdateRecadoDto = {
-      lido: updateRecadoDto?.lido,
-      texto: updateRecadoDto?.texto,
-    };
+    const recado = await this.findOne(id);
 
-    const recadoExistente = await this.recadoRepository.preload({
-      id,
-      ...partialUpdateRecadoDto,
-    });
+    recado.texto = updateRecadoDto?.texto ?? recado.texto;
+    recado.lido = updateRecadoDto?.lido ?? recado.lido;
 
-    if (!recadoExistente) return this.throwNotFoundError();
+    await this.recadoRepository.save(recado);
 
-    return this.recadoRepository.save(recadoExistente);
+    return recado;
   }
 
   async remove(id: number) {

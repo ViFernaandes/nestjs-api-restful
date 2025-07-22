@@ -10,4 +10,4 @@ import { PessoasModule } from 'src/pessoas/pessoas.module';
   controllers: [RecadosController],
   providers: [RecadosService],
 })
-export class RecadosModule { }
+export class RecadosModule {}
