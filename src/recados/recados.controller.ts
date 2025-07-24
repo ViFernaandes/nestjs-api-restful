@@ -12,7 +12,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
-import { TimingConnectionInterceptor } from 'src/common/interceptors/timing-connection.interceptor';
+import { ErrorHandlingInterceptor } from 'src/common/interceptors/error-handling.interceptor';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/uptadte-recado.dto';
 import { RecadosService } from './recados.service';
@@ -23,7 +23,7 @@ export class RecadosController {
 
   @HttpCode(HttpStatus.OK)
   @Get()
-  @UseInterceptors(TimingConnectionInterceptor)
+  @UseInterceptors(ErrorHandlingInterceptor)
   async findAll(@Query() paginationDto: PaginationDto) {
     const recados = await this.recadosServices.findAll(paginationDto);
     return recados;
