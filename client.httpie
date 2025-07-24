@@ -1,0 +1,42 @@
+
+# RECADOS
+
+# Lista todos os recados
+http GET http://localhost:3000/recados limit==10 offset==10
+
+# Lista apenas um recado
+http GET http://localhost:3000/recados/12
+
+# Cria um recado
+http POST http://localhost:3000/recados \
+  Content-Type:application/json \
+  deId=10 paraId=10 texto="4 NOVO Recado1"
+
+# Atualiza um recado
+http PATCH http://localhost:3000/recados/3 \
+  Content-Type:application/json \
+  lido:=true texto="Recado Atualizado Sucesso"
+
+# Apaga um recado
+http DELETE http://localhost:3000/recados/2
+
+# PESSOAS
+
+# Lista todas as pessoas
+http GET http://localhost:3000/pessoas limit==10 offset==10 user==luiz
+
+# Lista uma pessoa
+http GET http://localhost:3000/pessoas/1
+
+# Cria uma pessoa
+http POST http://localhost:3000/pessoas \
+  Content-Type:application/json \
+  nome="Otávio" password="123456" email="email@email.com"
+
+# Apaga uma pessoa
+http DELETE http://localhost:3000/pessoas/12
+
+# Atualiza uma pessoa
+http PATCH http://localhost:3000/pessoas/12 \
+  Content-Type:application/json \
+  nome="Joãooo" password="12345678"
