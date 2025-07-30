@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { PessoasService } from './pessoas.service';
-import { PessoasController } from './pessoas.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Pessoa } from './entities/pessoa.entity';
+import { PessoasController } from './pessoas.controller';
+import { PessoasService } from './pessoas.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Pessoa])],
@@ -10,4 +10,4 @@ import { Pessoa } from './entities/pessoa.entity';
   providers: [PessoasService],
   exports: [PessoasService],
 })
-export class PessoasModule {}
+export class PessoasModule { }
