@@ -7,6 +7,7 @@ import { RecadosModule } from 'src/recados/recados.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import globalConfig from 'src/global-config/global.config';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import globalConfig from 'src/global-config/global.config';
           username: globalConfigurations.database.username,
           database: globalConfigurations.database.database,
           password: globalConfigurations.database.password,
-          autoloadentities: globalConfigurations.database.autoLoadEntities,
+          autoLoadEntities: globalConfigurations.database.autoLoadEntities,
           synchronize: globalConfigurations.database.synchronize,
         };
       },
@@ -33,6 +34,7 @@ import globalConfig from 'src/global-config/global.config';
     RecadosModule,
     PessoasModule,
     GlobalConfigModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,0 +1,22 @@
+meta {
+  name: Atualiza um recado
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/recados/70/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "texto": "De LUIZ para Joana",
+      "lido": true
+  }
+}
+
+settings {
+  encodeUrl: true
+}

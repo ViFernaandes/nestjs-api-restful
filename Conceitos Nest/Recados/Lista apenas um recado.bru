@@ -1,0 +1,15 @@
+meta {
+  name: Lista apenas um recado
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/recados/1/
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

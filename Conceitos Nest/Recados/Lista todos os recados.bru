@@ -1,0 +1,15 @@
+meta {
+  name: Lista todos os recados
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/recados/
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

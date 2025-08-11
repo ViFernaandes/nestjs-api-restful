@@ -1,0 +1,22 @@
+meta {
+  name: Cria um recado
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/recados/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "texto": "Este texto deve chegar no e-mail. \nAqui vem na próxima linha.",
+      "paraId": 39
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,58 @@
+@baseUrl = http://127.0.0.1:3000
+
+# RECADOS
+### Lista todos os recados
+GET {{baseUrl}}/recados/
+?limit=10
+&offset=0
+
+### Lista apenas um recado
+GET {{baseUrl}}/recados/1/
+
+### Cria um recado
+POST {{baseUrl}}/recados/
+Content-Type: application/json
+{
+    "texto": "Este texto deve chegar no e-mail",
+    "paraId": 39
+}
+
+### Atualiza um recado
+PATCH {{baseUrl}}/recados/70/
+Content-Type: application/json
+{
+    "texto": "De LUIZ para Joana",
+    "lido": true
+}
+
+### Apaga um recado
+DELETE {{baseUrl}}/recados/70/
+ 
+# Pessoas
+### Lista todas as pessoas
+GET {{baseUrl}}/pessoas/
+?limit=10
+&offset=0
+
+### Lista apenas uma pessoa
+GET {{baseUrl}}/pessoas/14/
+
+### Cria uma pessoa
+POST {{baseUrl}}/pessoas/
+Content-Type: application/json
+{
+    "email": "luiz@email.com",
+    "password": "123456",
+    "nome": "Luiz"
+}
+
+### Atualiza uma pessoa
+PATCH {{baseUrl}}/pessoas/37/
+Content-Type: application/json
+{
+    "nome": "JOÃO"
+}
+
+### Apaga uma pessoa
+DELETE {{baseUrl}}/pessoas/37/
+ 

@@ -1,0 +1,15 @@
+meta {
+  name: Apaga uma pessoa
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/pessoas/37/
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
